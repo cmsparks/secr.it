@@ -1,7 +1,25 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var path = require('path');
-var io = require('socket.io')(http);
+const app = require('express')();
+const http = require('http').Server(app);
+const path = require('path');
+const io = require('socket.io')(http);
+const MongoClient = require('mongodb').MongoClient;
+const dburl = 'mongodb://127.0.0.1:27017/';
+const assert = require('assert');
+const dbName = 'secritdb';
+let db;
+
+let clients = [];
+
+MongoClient.connect(dburl, function(err,client) {
+  console.log('MongoDB connected');
+  assert.equal(null,err);
+
+  db = client.db(dbName);
+
+  insertDocuments(db, function() {
+    client.close();
+  });
+})
 
 app.get('/', function(req, res){
     res.sendFile(path.resolve('./dist/index.html'));
@@ -21,10 +39,44 @@ http.listen(8080, function(){
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  clients.push(socket)
+
   socket.on('login', function(msg) {
-  	
+    console.log(msg);
+    let msgData = JSON.parse(msg);
+    if(isNewRoom(msgData.room)) {
+      socket.join(msgData.room);
+    }
+    else {
+      console.log('not a room')
+    }
+
   });
+
   socket.on('message', function(msg) {
-  	console.log(msg);
+    console.log(msg);
+    let msgData = JSON.parse(msg);
+
+    socket.to()
   });
+
+  socket.on('create-chat', function(msg){
+
+  });
+
+  socket.on('disconnect', function() {
+    clients.splice(clients.indexOf(client),1);
+  })
 });
+
+function insertDocuments(db, callback) {
+  const collection = db.collection('documents');
+  collection.insertMany([{a : 1}, {a : 2}, {a : 3}]
+    , function(err, result) {
+      assert.equal(err, null);
+      assert.equal(3, result.result.n);
+      assert.equal(3, result.ops.length);
+      console.log("inserted 3 documents into the collection");
+      callback
+    })
+}
