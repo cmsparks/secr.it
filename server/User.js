@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 /* user data
 [user]: {
   name: '',
@@ -19,7 +21,14 @@
 */
 
 class User {
-	constructor(data) {
+	constructor(isNew, data, socket, db) {
+		if(isNew === true){
+			this.name = data.name;
+			this.pwd = data.pwd;
+		}
+		else {
+
+		}
 		this.name = data.name;
 		this.validation = data.validation;
 		this.currentChats = data.currentChats;

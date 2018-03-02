@@ -7,7 +7,6 @@ import Input from './components/Input.jsx';
 import Login from './components/Login.jsx';
 import CreateChat from './components/CreateChat.jsx';
 
-
 import './index.css';
 
 let socket = io();
@@ -16,22 +15,42 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleMessage = this.handleMessage.bind(this);
-		this.handleLogin = this.handleLogin.bind(this);
+		this.handleLoginUser = this.handleLoginUser.bind(this);
 		this.handleNewChat = this.handleNewChat.bind(this);
 	}
 
 	handleMessage(message) {
 		//todo add ack function
-		socket.emit('message', message);
+		socket.emit('message', message, function(ack) {
+			console.log(ack);
+		});
 	}
-	handleLogin(login) {
+	handleLoginUser(login) {
 		//add ack to login to passworded server or to autologin
-		socket.emit('login', login);
+		socket.emit('login-user', login, function(ack) {
+			console.log(ack);
+		});
+	}
+	handleLoginChat(login) {
+		//add ack to login to passworded server or to autologin
+		socket.emit('login-user', login, function(ack) {
+			console.log(ack);
+		});
+	}
+
+	handleNewUser(user) {
+		socket.emit('create-user', user, function(ack) {
+			console.log(ack);
+		});
 	}
 
 	handleNewChat(chat) {
-		socket.emit('create-chat', chat)
+		socket.emit('create-chat', chat, function(ack) {
+			console.log(ack);
+		});
 	}
+
+	handle
 
 	render() {
 		return (

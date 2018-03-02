@@ -7,9 +7,12 @@ const dburl = 'mongodb://127.0.0.1:27017/';
 const assert = require('assert');
 const dbName = 'secritdb';
 const Room = require('./Room.js');
+const crypto = require('crypto');
+
 let db;
 
 let clients = [];
+let rooms = [];
 
 MongoClient.connect(dburl, function(err,client) {
   console.log('MongoDB connected');
@@ -17,21 +20,19 @@ MongoClient.connect(dburl, function(err,client) {
 
   db = client.db(dbName);
 
-  insertDocuments(db, function() {
-    client.close();
-  });
+  client.close()
 })
 
 app.get('/', function(req, res){
     res.sendFile(path.resolve('./dist/index.html'));
 });
 
-app.get('/dist/68fd74551c72fc2fbcd5bf41dc2a465b.js', function(req, res) {
-    res.sendFile(path.resolve('./dist/68fd74551c72fc2fbcd5bf41dc2a465b.js'))
+app.get('/dist/579d20485106d1e6eae7e4431ee914f7.js', function(req, res) {
+    res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.js'))
 })
 
-app.get('/dist/68fd74551c72fc2fbcd5bf41dc2a465b.css', function(req, res) {
-    res.sendFile(path.resolve('./dist/68fd74551c72fc2fbcd5bf41dc2a465b.css'))
+app.get('/dist/579d20485106d1e6eae7e4431ee914f7.css', function(req, res) {
+    res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.css'))
 })
 
 http.listen(8080, function(){
@@ -40,32 +41,59 @@ http.listen(8080, function(){
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  clients.push(socket)
+  console.log(socket.id);
+  clients[socket.id] = socket;
 
-  socket.on('login', function(msg) {
+  socket.on('login-user', function(msg) {
     console.log(msg);
     let msgData = JSON.parse(msg);
-    if(isNewRoom(msgData.room)) {
-      socket.join(msgData.room);
+    let user = new User(false, msgData, socket, db);
+    clients[socket.id] = user;
+  });
+
+  socket.on('login-chat', function(msg) {
+    console.log(msg)
+    let msgData = JSON.parse(msg);
+    isNew = isNewRoom(msg.room);
+    if(isNew) {
+      //check if the room exists in the database and is not initialized
+      roomExists = isExistingRoom(msg.room);
+      if(roomExists) {
+        //ack callback init room
+      }
+      else {
+        //ack callback room fail
+      }
     }
     else {
-      console.log('not a room')
+      //add user to room, ack callback added to room
     }
 
-  });
+  })
 
-  socket.on('message', function(msg) {
+  socket.on('message', function(msg, ack) {
     console.log(msg);
     let msgData = JSON.parse(msg);
 
-    socket.to()
   });
 
-  socket.on('create-chat', function(msg){
+  socket.on('create-chat', function(msg, ack){
+    let msgData = JSON.parse(msg);
 
+  });
+
+  socket.on('create-user', function(msg, ack) {
+    //add ack 
+    let msgData = JSON.parse(msg);
+    let user = new User(true, msgData, socket, db);
+    clients[socket.id] = user;
   });
 
   socket.on('disconnect', function() {
-    clients.splice(clients.indexOf(client),1);
+    clients.splice(socket.id,1);
   })
 });
+
+function isNewRoom(roomId) {
+
+}
