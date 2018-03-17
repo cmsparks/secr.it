@@ -1,6 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const path = require('path');
+const fs = require('fs')
 const io = require('socket.io')(http);
 const MongoClient = require('mongodb').MongoClient;
 const dburl = 'mongodb://127.0.0.1:27017/';
@@ -14,27 +15,42 @@ let db;
 let clients = [];
 let rooms = [];
 
-MongoClient.connect(dburl, function(err,client) {
+/*MongoClient.connect(dburl, function(err,client) {
   console.log('MongoDB connected');
   assert.equal(null,err);
 
   db = client.db(dbName);
 
   client.close()
-})
+})*/
 
-app.get('/', function(req, res){
-    res.sendFile(path.resolve('./dist/index.html'));
+fs.readdir('./dist', function(err,files) {
+  if(err) {
+    console.error("Could not loop through directory", err);
+    process.exit(1);
+  }
+  files.forEach(function(file,index) {
+    let servePath = path.join('/dist', file);
+    let distPath = path.join('./dist', file);
+    app.get(servePath, function(req, res) {
+      res.sendFile(path.resolve(distPath));
+    });
+  });
 });
 
+
+app.get('/', function(req, res){
+  res.sendFile(path.resolve('./dist/index.html'));
+});
+/*
 app.get('/dist/579d20485106d1e6eae7e4431ee914f7.js', function(req, res) {
-    res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.js'))
+  res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.js'))
 })
 
 app.get('/dist/579d20485106d1e6eae7e4431ee914f7.css', function(req, res) {
-    res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.css'))
+  res.sendFile(path.resolve('./dist/579d20485106d1e6eae7e4431ee914f7.css'))
 })
-
+*/
 http.listen(8080, function(){
   console.log('listening on *:8080');
 });

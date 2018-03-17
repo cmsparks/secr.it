@@ -12,10 +12,11 @@ class CreateChat extends React.Component {
 	}
 	render() {
 		return (
-			<form className="new" onSubmit={this.createChat}>
+			<form className="newChat" onSubmit={this.createChat}>
 				<input type="text" value={this.state.chatname} />
-				<input type="text" />
-				<input type="submit" value="Create" />
+				<input className="primaryBtn" type="submit" value="Create" />
+				<input className="secondaryBtn" type="submit" value="Other"/>
+				<input className="tertiaryBtn" type="submit" value="Cancel"/>
 			</form>
 		)
 	}
