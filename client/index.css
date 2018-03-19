@@ -28,7 +28,154 @@ img {
   transform: rotate(1080deg);
 }
 
-/* New Chat styling */
+/* Sidebar UI Styling */
+.Sidebar {
+  /*border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;*/
+  border-right: solid 1px lightgrey; 
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 24%;
+  top: 0;
+  background-color: white;
+  overflow-y: scroll;
+}
+
+.Sidebar > .topBar > input {
+  border-radius: 25px;
+  font-size: 11pt;
+  border: 1px solid lightgrey;
+  height: 30px;
+  width: 85%;
+  margin: 0 auto;
+  padding-left: 15px;
+}
+
+.Sidebar > .topBar {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+
+}
+
+.SidebarChat {
+  height: 100px;
+  width: 90%;
+  background-color: red;
+  display: flexbox;
+  font-size: 10pt;
+  margin:10px auto;
+  margin-bottom: 20px;
+  margin-top: 0;
+  border-radius: 7px;
+  height:100px;
+  color: black;
+  background-color: white;
+  border: 2px solid lightgrey;
+  font-weight: 550;
+  transition-duration: .2s;
+  box-shadow: 0px 3px 0px 0px lightgrey;
+}
+
+.SidebarChat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 0px 0px lightgrey;
+}
+
+.SidebarChat:active {
+  transform: translateY(1px);
+  box-shadow: 0px 2px 0px 0px lightgrey;
+}
+
+.SidebarContainer {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 0.5fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas: 
+  "img title date"
+  "img prevmsg prevmsg";
+}
+
+.SidebarContainer > .img {
+  border-radius: 100%;
+  height: 75px;
+  width: 75px;
+  margin: 0 auto;
+  margin-top: 7px;
+  border: 2px solid grey;
+  grid-area: img;
+}
+.SidebarContainer > h3 {
+  margin: 0;
+  margin-top: 15px;
+  font-size: 10pt;
+  font-weight: 700;
+  grid-area: title;
+}
+.SidebarContainer > h6 {
+  margin: 0;
+  margin-top: 15px;
+  font-size: 10pt;
+  font-weight: 600;
+  color:grey;
+  grid-area: date;
+}
+.SidebarContainer > p {
+  margin: 0;
+  margin-top: 15px;
+  font-size: 10pt;
+  font-weight: 500;
+  color: #333;
+  grid-area: prevmsg;
+}
+
+/* Input UI Styling */
+.input {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 75%
+}
+
+.input > .textmsg {
+  border-radius: 25px;
+  font-size: 11pt;
+  border: 1px solid lightgrey;
+  height: 30px;
+  width: 92.5%;
+  padding-left: 15px;
+}
+
+.input > .send {
+  font-size: 12pt;
+  margin:15px;
+  padding: 0;
+  text-align: center;
+  border-radius: 25px;
+  height:30px;
+  width: 30px;
+  background-color: #5aed5a;
+  border: 2px solid #5aed5a;
+  color:white;
+  font-weight: 550;
+  transition-duration: .2s;
+  box-shadow: 0px 4px 0px 0px #45d845;
+}
+
+.input > .send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 0px 0px #45d845;
+}
+
+.input > .send:active {
+  transform: translateY(1px);
+  box-shadow: 0px 3px 0px 0px #45d845;
+}
+
+/* New Chat UI styling */
 .newChat {
   position: absolute;
   display: grid;
@@ -36,17 +183,20 @@ img {
   grid-template-areas: 
   "opts"
   "btns";
-  height: 225px;
+  height: 240px;
   width: 450px;
-  margin: 0 auto;
-
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
   box-shadow: 0px 2px 3px 2px #bbb;
   background-color: white;
-  margin-top: 30vh;
+  margin-top: 20vh;
   border-radius: 10px;
 }
 
 .optsContainer {
+  padding: 15px;
   display: grid;
   grid-area: opts;
   grid-template-columns: 1fr 1fr;
@@ -60,11 +210,14 @@ img {
 
 .optsContainer > .name {
   grid-area: newChatname;
+  width: 420px;
 }
 .optsContainer > .name > input {
-  border-radius: 6px;
+  border-radius: 25px;
   border: 1px solid lightgrey;
   height: 20px;
+  width: 365px;
+  padding-left: 8px;
 }
 
 .optsContainer > .isPublic {
@@ -89,27 +242,33 @@ img {
   grid-area: newChatinvites;
 }
 .optsContainer > .invites > input {
-  border-radius: 6px;
+  border-radius: 25px;
   border: 1px solid lightgrey;
   height: 20px;
+  width: 315px;
+  padding-left: 8px;
 }
 
 .optsContainer > .blacklist {
   grid-area: newChatblacklist;
 }
 .optsContainer > .blacklist > input {
-  border-radius: 6px;
+  border-radius: 25px;
   border: 1px solid lightgrey;
   height: 20px;
+  width: 350px;
+  padding-left: 8px;
 }
 
 .optsContainer > .password {
   grid-area: newChatpassword;
 }
 .optsContainer > .password > input {
-  border-radius: 6px;
+  border-radius: 25px;
   border: 1px solid lightgrey;
   height: 20px;
+  width: 340px;
+  padding-left: 8px;
 }
 
 .btnContainer {
@@ -125,11 +284,18 @@ img {
   display: flexbox;
 }
 
+/* Login Styling */
+
+.login {
+
+}
+
+/* BTN Styling */
 .primaryBtn {
   font-size: 10pt;
-  margin:15px;
+  margin:10px;
   border-radius: 7px;
-  height:40px;
+  height:35px;
   width: 120px;
   background-color: #5aed5a;
   border: 2px solid #5aed5a;
@@ -151,9 +317,9 @@ img {
 
 .secondaryBtn {
   font-size: 10pt;
-  margin:15px;
+  margin:10px;
   border-radius: 7px;
-  height:40px;
+  height:35px;
   width: 120px;
   color: #45d845;
   background-color: white;
@@ -175,9 +341,9 @@ img {
 
 .tertiaryBtn {
   font-size: 10pt;
-  margin:15px;
+  margin:10px;
   border-radius: 7px;
-  height:40px;
+  height:35px;
   width: 120px;
   color:#333;
   background-color: #bbb;

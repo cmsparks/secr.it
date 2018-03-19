@@ -12,8 +12,8 @@ class Input extends React.Component {
 	render() {
 		return (
 			<form className="input" onSubmit={this.handleSend}>
-				<textarea value={this.state.value} onChange={this.handleChange} />
-				<input type="submit" value="Send" />
+				<input className="textmsg" type="text" value={this.state.value} onChange={this.handleChange} />
+				<input className="send" type="submit" value="▲" />
 			</form>
 		)
 	}

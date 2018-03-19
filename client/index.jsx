@@ -6,6 +6,7 @@ import Message from './components/Message.jsx';
 import Input from './components/Input.jsx';
 import Login from './components/Login.jsx';
 import CreateChat from './components/CreateChat.jsx';
+import Sidebar from './components/Sidebar.jsx';
 
 import './index.css';
 
@@ -55,8 +56,7 @@ class App extends React.Component {
 	render() {
 		return (
 		  <div>
-		  	<Login onLogin={this.handleLogin} />
-		  	<CreateChat onNewChat={this.handleNewChat} />
+		  	<Sidebar />
 		  	<Message />
 		  	<Input onSend={this.handleMessage}/>
 		  </div>

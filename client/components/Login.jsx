@@ -15,9 +15,10 @@ class Login extends React.Component {
 	render() {
 		return (
 			<form className="login" onSubmit={this.login}>
-				<input type="text"value={this.state.name} onChange={this.handleName} placeholder="Username"/>
-				<input type="text" value={this.state.room} onChange={this.handleRoom} placeholder="Room ID"/>
-				<input type="submit" value="Login" />
+				<input className="LoginUsername" type="text"value={this.state.name} onChange={this.handleName} placeholder="Username"/>
+				<input className="LoginRoom" type="text" value={this.state.room} onChange={this.handleRoom} placeholder="Room ID"/>
+				<input className="tertiaryBtn" type="submit" value="Cancel" />
+				<input className="primaryBtn" type="submit" value="Login" />
 			</form>
 		)
 	}
