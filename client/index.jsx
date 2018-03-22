@@ -57,7 +57,37 @@ class App extends React.Component {
 		return (
 		  <div>
 		  	<Sidebar />
-		  	<Message />
+		  	<div className="chatArea">
+		  		<div className="topBar">
+		  			
+		  		</div>
+		  		<div className="chat">
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+		  			<Message />
+
+		  		</div>
+		  	</div>
 		  	<Input onSend={this.handleMessage}/>
 		  </div>
 		);
