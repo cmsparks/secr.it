@@ -5,7 +5,7 @@ class Message extends React.Component {
     return (
     	<div className="Message">
     		<div className="bubble">
-    			Message
+    			Message test this is a longer message which tests whether or not the size of each bubble is static or not
     		</div>
     	</div>
     )

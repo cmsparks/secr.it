@@ -58,7 +58,7 @@ class App extends React.Component {
 		  <div>
 		  	<Sidebar />
 		  	<div className="chatArea">
-		  		<div className="topBar">
+		  		<div className="topBar blue">
 		  			
 		  		</div>
 		  		<div className="chat">
