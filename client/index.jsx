@@ -51,41 +51,22 @@ class App extends React.Component {
 		});
 	}
 
-	handle
-
 	render() {
 		return (
 		  <div>
 		  	<Sidebar />
 		  	<div className="chatArea">
 		  		<div className="topBar blue">
-		  			
+		  			<h2>Lorem Ipsum</h2>
 		  		</div>
 		  		<div className="chat">
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-		  			<Message />
-
+		  			<Message side="right" connectBot={false} connectTop={false} message="Lorem ipsum dolor si amet"/>
+		  			<Message side="left" connectBot={true} connectTop={false} message="Accusamus aperiam qui quas cupiditate eum necessitatibus. Iusto minus et et. Et voluptatem occaecati fugiat."/>
+		  			<Message side="left" connectBot={true} connectTop={true} message="Voluptas consequatur iure ut cupiditate dolores ea doloribus ex."/>
+		  			<Message side="left" connectBot={false} connectTop={true} message="uas expedita voluptatem eos suscipit cupiditate inventore quaerat error."/>
+					<Message side="right" connectBot={true} connectTop={false} message="Voluptas tempora soluta rerum."/>
+		  			<Message side="right" connectBot={false} connectTop={true} message="Non perferendis architecto et saepe ut."/>
+		  			<Message side="left" connectBot={false} connectTop={false} message="Nam sit quis et omnis et possimus soluta. Est adipisci quis earum beatae."/>
 		  		</div>
 		  	</div>
 		  	<Input onSend={this.handleMessage}/>

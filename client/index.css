@@ -39,16 +39,26 @@ img {
 .chatArea > .topBar {
   height: 8%;
   width: 100%;
+  border-bottom: 1px solid lightgrey;
+  display: table;
+}
+
+.chatArea > .topBar > h2 {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 13pt;
 }
 
 .chatArea > .chat {
+  margin-top: 10px;
   width: 100%;
   height: 92%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
-
 }
 
 .chatArea > .chat > .Message {
@@ -57,16 +67,35 @@ img {
   width: 100%;
 }
 
-.Message > .bubble {
-  background-color: #5aed5a;
+.bubble {
+  font-size: 11.5pt;
   color: white;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  width: 33%;
-  padding: 4px;
-  padding-left: 6px;
+  border-radius: 15px;
+  max-width: 55%;
+  padding: 4px 8px;
+  margin: 0 15px;
+}
+.leftmsg {
+  background-color: #ddd;
+  color: black;
+  float: left;
+}
+.rightmsg {
+  background-color: #5aed5a;
+  float: right;
+}
+
+.lefttop {
+  border-top-left-radius: 3px;
+}
+.leftbot {
+  border-bottom-left-radius: 3px;
+}
+.righttop {
+  border-top-right-radius: 3px;
+}
+.rightbot {
+  border-bottom-right-radius: 3px;
 }
 
 .Message > div > .date {
@@ -241,7 +270,7 @@ img {
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
-  box-shadow: 0px 2px 3px 2px #bbb;
+  box-shadow: 0px 2px 2px 0px #bbb;
   background-color: white;
   margin-top: 20vh;
   border-radius: 10px;
